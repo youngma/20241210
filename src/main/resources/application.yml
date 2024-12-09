@@ -1,0 +1,76 @@
+server:
+    port: 8082
+
+
+spring:
+    application:
+        name: musinsa_ct
+
+    datasource:
+        driver-class-name: org.h2.Driver
+        url: jdbc:h2:~/ct;MODE=MySql
+        username: sa
+        password: password
+
+    h2:
+        console: # H2 DB를 웹에서 관리할 수 있는 기능
+            enabled: true           # H2 Console 사용 여부
+            path: /h2-console       # H2 Console 접속 주소
+
+    jpa:
+        database: h2
+        database-platform: org.hibernate.dialect.H2Dialect
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.H2Dialect
+                session:
+                    events:
+                        log:
+                            LOG_QUERIES_SLOWER_THAN_MS: 50000
+                connection:
+                    autocommit: true
+                #        show_sql: true
+                format_sql: true
+                highlight_sql: ture
+                use_sql_comments: true
+                order_inserts: true
+                order_updates: true
+                generate_statistics: true
+                globally_quoted_identifiers: true
+        hibernate:
+            ddl-auto: create
+            naming:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+
+logging:
+    logback:
+        rollingpolicy:
+            max-history: 7
+            clean-history-on-start: true
+
+    charset:
+        file: UTF-8
+        console: UTF-8
+
+    level:
+        root: info
+        test: debug
+        web: debug
+        musinsa.bob.main: debug
+        org:
+            #      org.springframework.boot.actuate.endpoint.web
+            springframework:
+                boot:
+                    actuate:
+                        endpoint:
+                            web: info
+            hibernate:
+                stat: trace
+                SQL: debug
+                orm:
+                    #          results:
+                    #            loading:
+                    #              entity: debug
+                    jdbc:
+                        bind: trace
