@@ -9,7 +9,7 @@ public enum BrandException {
     ALREADY_EXISTS("이미 등록된 브랜드입니다."),
     ;
 
-    private String message;
+    private final String message;
 
     BrandException(String message) {
         this.message = message;

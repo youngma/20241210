@@ -27,7 +27,6 @@ public class BrandService {
 
     @Transactional(readOnly = true)
     public BrandEntity findByCode(String name, AppException exception) {
-
         Optional<BrandEntity> optionalBrandEntity =  this.findBrandByCode(name);
         if (exception != null) {
             optionalBrandEntity.ifPresent((brand) -> {
@@ -36,14 +35,12 @@ public class BrandService {
         }
 
         return optionalBrandEntity.orElseGet(() -> null);
-
     }
 
     @Transactional(readOnly = true)
     public BrandVo find(String code) {
         BrandEntity brandEntity = this.findBrandByCode(code).orElseThrow(BrandException.BRAND_NOT_FOUND::throwErrors);
         return brandConverter.toDto(brandEntity);
-
     }
 
     @Transactional()

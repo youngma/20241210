@@ -41,11 +41,17 @@ public class BrandEntity extends BaseEntity implements Serializable {
     private String name;
 
 
-    public static BrandEntity of(String name) {
+    public static BrandEntity of(String code) {
         BrandEntity brand = new BrandEntity();
-        brand.name = name;
+        brand.code = code;
         return brand;
     }
 
+    public static BrandEntity ofAutoName(String code) {
+        BrandEntity brand = new BrandEntity();
+        brand.code = code;
+        brand.name = code.concat("_").concat("Name");
+        return brand;
+    }
 
 }
