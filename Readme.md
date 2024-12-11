@@ -54,9 +54,14 @@ src
 - Enum 으로 구현
 
 ### 2. 브랜드 관리
-- 브랜드 조회 (GET /brand/{code})
-- 브랜드 등록 (POST /brand)
+- 브랜드 조회 ()
 ```
+GET /brand/{code}
+```
+- 브랜드 등록
+```
+POST /brand
+
 Request Body
 
 {
@@ -64,8 +69,10 @@ Request Body
   "name": "C-name"
  }
 ```
-- 브랜드 수정 (PUT /brand)
+- 브랜드 수정
 ```
+PUT /brand
+
 Request Body
 
 {
@@ -73,11 +80,16 @@ Request Body
   "name": "C-name"
  }
 ```
-- 브랜드 삭제 (DELETE /brand/{code})
+- 브랜드 삭제 
+```
+DELETE /brand/{code}
+```
 
 ### 2. 상품 관리
-- 상품 등록 (POST /item)
+- 상품 등록
 ```
+POST /item
+
 Request Body
 
 {
@@ -86,8 +98,10 @@ Request Body
     "price": 1000
 }
 ```
-- 상품 수정 (PUT /item)
+- 상품 수정
 ```
+PUT /item
+
 Request Body
 
 {
@@ -97,13 +111,29 @@ Request Body
     "price": 1000
 }
 ```
-- 상품 삭제 (DELETE /item/{seq})
+- 상품 삭제
+```
+DELETE /item/{seq}
+```
 
+### 3. 기타 구현 API
+- 카테고리 별 최저가격 브랜드와 상품 가격, 총액을 조회하는 API
+```
+GET /item/group/category/price/min
+```
+- 단일 브랜드로 모든 카테고리 상품을 구매할 때 최저가격에 판매하는 브랜드와 카테고리의 상품가격, 총액을 조회하는 API
+```
+GET /item/group/brand/price/min
+```
+- 카테고리 이름으로 최저, 최고 가격 브랜드와 상품 가격을 조회하는 API
+```
+GET http://localhost:8082/item/brand/price/{category}
+```
 
 ## 🚀 실행 방법
 ```bash
 # 프로젝트 클론
-git clone https://github.com/username/project.git
+git clone https://github.com/youngma/20241210.git
 
 # 디렉토리 이동
 cd project
